@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace ActorSystemInfra.Actors
 {
@@ -17,7 +18,7 @@ namespace ActorSystemInfra.Actors
     public class StatusActor : TypedActor, IHandle<ActorStatusRequest>
     {
         private LoggingAdapter log = Logging.GetLogger(Context);
-        private Logger Loggly = new Logger("aad0a7e8-bafc-4405-8630-3b99d8953bd3");
+        private Logger Loggly = new Logger(ConfigurationManager.AppSettings["loggly"]);
         private String m_Status;
         private long m_MessageCount = 0;
 
@@ -28,7 +29,9 @@ namespace ActorSystemInfra.Actors
             
             var response = new ActorStatusResponse(m_Status, Thread.CurrentThread.ManagedThreadId.ToString(), m_MessageCount);
             
-            Loggly.LogSync(JsonConvert.SerializeObject(response), true);
+            var logResponse = Loggly.LogSync(JsonConvert.SerializeObject(response), true);
+            if (!logResponse.Success)
+                Console.WriteLine("Failed to send to loggly");
             
             Context.Sender.Tell(response);
         }

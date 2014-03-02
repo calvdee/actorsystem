@@ -12,14 +12,14 @@ namespace ActorSystemInfra.Actors
         private readonly String m_ThreadId;
         private readonly DateTime m_Timestamp;
         private readonly long m_MessageCount;
-        public String Status { get { return m_Status; } }
+        public String StatusUpdate { get { return m_Status; } }
         public DateTime Timestamp { get { return m_Timestamp; } }
         public String ThreadId { get { return m_ThreadId; } }
         public long MessageCount { get { return m_MessageCount; } }
 
         public ActorStatusResponse(String status, String thread, long count)
         {
-            m_Status = Status;
+            m_Status = status;
             m_Timestamp = DateTime.Now;
             m_ThreadId = thread;
             m_MessageCount = count;
