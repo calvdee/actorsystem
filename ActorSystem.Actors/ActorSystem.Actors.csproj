@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DA97971B-371B-435E-A7C5-CDB08D873E94}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{680992F1-5169-449A-B3E1-C620F007CC61}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ActorSystemInfra</RootNamespace>
-    <AssemblyName>ActorSystem</AssemblyName>
+    <RootNamespace>ActorSystem.Actors</RootNamespace>
+    <AssemblyName>ActorSystem.Actors</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,12 +33,18 @@
     <Reference Include="Akka">
       <HintPath>..\libs\Akka.dll</HintPath>
     </Reference>
+    <Reference Include="Gushing">
+      <HintPath>..\..\gushing\Gushing\bin\Release\Gushing.dll</HintPath>
+    </Reference>
     <Reference Include="Loggly, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\loggly-csharp\loggly-csharp\bin\Debug\Loggly.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.4.0.11\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,19 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ActorStatusResponse.cs" />
+    <Compile Include="StatusActor.cs" />
+    <Compile Include="ActorStatusRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ActorSystem.Actors\ActorSystem.Actors.csproj">
-      <Project>{680992f1-5169-449a-b3e1-c620f007cc61}</Project>
-      <Name>ActorSystem.Actors</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
