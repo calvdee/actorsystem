@@ -41,7 +41,7 @@ namespace ActorSystemInfra
             var futures = new List<Task>();
 
 
-            long[] messages = new long[] { 1, 10, 100, 1000, 10000 };
+            long[] messages = new long[] { 1, 10, 100, 1000, 10000, 100000 };
             //long[] messages = new long[] { 1, 10, 100, 1000, 10000, 100000};
             long sum = 0;
             foreach(long i in messages)

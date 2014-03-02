@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ServiceStack.Text.Json;
-using ServiceStack.Text;
 using Newtonsoft.Json;
 
 namespace ActorSystemInfra.Actors
@@ -27,8 +25,9 @@ namespace ActorSystemInfra.Actors
         {
             m_MessageCount += 1;
             m_Status = "This status was generated at " + DateTime.Now.ToString("MM-dd-yyyyTHH:mm:ss");
-            log.Info("Reporting status {0}", m_Status);
+            
             var response = new ActorStatusResponse(m_Status, Thread.CurrentThread.ManagedThreadId.ToString(), m_MessageCount);
+            
             Loggly.LogSync(JsonConvert.SerializeObject(response), true);
             
             Context.Sender.Tell(response);
